@@ -1,4 +1,7 @@
+import pytest
 from app.services import adaptation
+
+pytestmark = pytest.mark.offline
 
 
 def test_prompt_base_e_socratico_e_nao_diagnostica():

@@ -3,6 +3,7 @@ import random
 import pytest
 from fastapi.testclient import TestClient
 
+from app import firebase
 from app.main import app
 
 # Estes testes rodam contra o Firestore de verdade (não tem emulador
@@ -10,6 +11,29 @@ from app.main import app
 # o próprio usuário no final, pra não sobrar lixo nem colidir entre testes.
 
 client = TestClient(app)
+
+
+def pytest_configure(config):
+    config.addinivalue_line(
+        "markers",
+        "offline: teste que não usa o Firestore real (roda sem chave do Firebase)",
+    )
+
+
+def pytest_collection_modifyitems(config, items):
+    """Sem chave do Firebase (ex.: CI sem secrets), roda só os testes
+    marcados como "offline" e pula os demais com um motivo claro, em vez de
+    quebrar na hora de falar com o banco."""
+    if firebase.configurado:
+        return
+
+    pular = pytest.mark.skip(
+        reason="sem chave do Firebase (FIREBASE_CREDENTIALS_JSON): só roda a suíte offline"
+    )
+
+    for item in items:
+        if "offline" not in item.keywords:
+            item.add_marker(pular)
 
 
 def email_aleatorio() -> str:
@@ -23,6 +47,10 @@ def _sem_limite_de_registro_nos_testes():
     # barrar spam de verdade) bloquearia a suíte inteira depois de só
     # alguns testes, já que dezenas deles chamam /auth/registrar.
     from app import crud_firebase
+
+    if not firebase.configurado:
+        yield
+        return
 
     crud_firebase._referencia_registros("testclient").delete()
     yield

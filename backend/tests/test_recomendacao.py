@@ -11,6 +11,8 @@ from app.data.oportunidades import OPORTUNIDADES
 from app.main import app
 from app.services import recomendacao as rec
 
+pytestmark = pytest.mark.offline
+
 UID = "ana@efectmatilda.teste"
 
 

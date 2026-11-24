@@ -32,14 +32,15 @@ jobs:
 
       - name: Rodar a suíte de testes
         env:
-          # Estes testes batem no Firestore de verdade (não tem emulador
-          # configurado no projeto) — os valores vêm dos "Secrets" deste
-          # repositório no GitHub (Settings > Secrets and variables >
-          # Actions), com os MESMOS nomes já usados no .env local e no
-          # render.yaml. Sem eles configurados aqui, o job falha na hora
-          # de conectar no Firebase/Groq, não nos testes em si.
+          # Com os secrets configurados (Settings > Secrets and variables >
+          # Actions), a suíte inteira roda contra o Firestore. Sem eles, roda
+          # só a suíte "offline" (testes que não usam o banco) e pula o
+          # resto, em vez de falhar. Use um projeto Firebase de TESTES nos
+          # secrets: os testes criam e apagam usuários de verdade.
           FIREBASE_CREDENTIALS_JSON: ${{ secrets.FIREBASE_CREDENTIALS_JSON }}
-          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+          # Sem secret, um valor fixo só pros testes offline (o app se recusa
+          # a iniciar sem uma chave de assinatura de tokens).
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY || 'chave-so-para-testes-no-ci' }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           GROQ_MODEL: ${{ secrets.GROQ_MODEL }}
         run: pytest tests/ -v

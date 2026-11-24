@@ -166,9 +166,12 @@ pip install -r requirements-dev.txt
 pytest
 ```
 
-A suíte tem 149 testes. A maioria roda contra o **Firestore real**, e cada teste cria e remove o próprio usuário. Por isso, aponte-a para um projeto de desenvolvimento. Os testes de perfil científico e de recomendação usam um Firestore falso e não tocam no banco.
+A suíte tem 149 testes e se comporta de dois jeitos:
 
-No GitHub Actions, configure os *secrets* `FIREBASE_CREDENTIALS_JSON`, `JWT_SECRET_KEY`, `GROQ_API_KEY` e `GROQ_MODEL` para a suíte rodar a cada push.
+- **Com a chave do Firebase** (`FIREBASE_CREDENTIALS_JSON` ou o arquivo em `backend/credentials/`): roda tudo. A maioria dos testes usa o **Firestore real**, e cada um cria e remove o próprio usuário. Por isso, aponte-a para um projeto Firebase de **desenvolvimento**, nunca o de produção.
+- **Sem a chave**: roda só os testes marcados como `offline` (43 testes: perfil científico, recomendações e adaptação do prompt, que usam um Firestore falso) e **pula** os demais com o motivo na tela. Nada quebra.
+
+No GitHub Actions, a suíte roda a cada push. Para rodar tudo lá, cadastre em Settings, Secrets and variables, Actions: `FIREBASE_CREDENTIALS_JSON` (de um projeto de testes), `JWT_SECRET_KEY`, `GROQ_API_KEY` e `GROQ_MODEL`. Sem esses secrets, o CI roda só a parte offline e fica verde.
 
 ## Principais rotas da API
 

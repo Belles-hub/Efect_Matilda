@@ -12,6 +12,8 @@ from app import crud_firebase, schemas
 from app.auth import verificar_token
 from app.main import app
 
+pytestmark = pytest.mark.offline
+
 UID = "ana@efectmatilda.teste"
 
 
