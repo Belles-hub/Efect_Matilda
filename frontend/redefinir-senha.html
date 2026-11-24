@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#c9a8f7">
+    <title>Recuperar senha — Efect Matilda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/matilda.css">
+    <link rel="stylesheet" href="css/formas.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/auth-pagina.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="js/acess.js"></script>
+</head>
+
+<body class="auth-page">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="ap">
+        <aside class="ap-lado">
+            <a class="ap-logo" href="index.html" aria-label="Matilda, voltar para o início">
+                <img src="img/logo-bonequinho.png" alt="Efect Matilda">
+            </a>
+
+            <div class="ap-lado__texto">
+                <h2>Vamos recuperar sua senha.</h2>
+                <p>Em dois passos rápidos você volta a acessar seus desafios e sua conversa com a Matilda.</p>
+            </div>
+            <div class="ap-arte" aria-hidden="true"></div>
+        </aside>
+
+        <main class="ap-form" id="conteudo">
+            <p class="ap-form__topo">Lembrou a senha? <a href="login.html">Entrar</a></p>
+            <div class="ap-form__centro">
+            <div class="auth__miolo">
+                <h1>Recuperar senha</h1>
+                <p class="subtitulo" id="subtituloPasso">Digite o e-mail da sua conta. Vamos mostrar a pergunta de segurança que você escolheu.</p>
+
+                <div id="avisoRedefinir" class="cu-notificacao-area"></div>
+
+                <form id="passo1" novalidate>
+                    <div class="campo">
+                        <label for="email">E-mail</label>
+                        <div class="entrada"><i class="entrada__icone fa-solid fa-envelope" aria-hidden="true"></i><input type="email" id="email" autocomplete="email" inputmode="email" placeholder="nome@exemplo.com" required></div>
+                        <p class="campo__erro" id="email-erro" role="alert"></p>
+                    </div>
+                    <button class="btn btn--primario btn--bloco" type="submit" id="btnPasso1">Continuar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                </form>
+
+                <form id="passo2" novalidate hidden>
+                    <div class="campo">
+                        <span class="rotulo">Pergunta de segurança</span>
+                        <p class="card" id="textoPergunta" style="padding:14px 16px"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="resposta">Sua resposta</label>
+                        <div class="entrada"><i class="entrada__icone fa-solid fa-key" aria-hidden="true"></i><input type="text" id="resposta" autocomplete="off" required></div>
+                        <p class="campo__erro" id="resposta-erro" role="alert"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="novaSenha">Nova senha</label>
+                        <div class="senha-wrap">
+                            <i class="entrada__icone fa-solid fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="novaSenha" autocomplete="new-password" placeholder="Pelo menos 6 caracteres" required>
+                            <button type="button" aria-label="Mostrar senha" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                        </div>
+                        <p class="campo__erro" id="novaSenha-erro" role="alert"></p>
+                    </div>
+
+                    <button class="btn btn--primario btn--bloco" type="submit" id="btnPasso2">Salvar nova senha</button>
+                </form>
+
+                <p class="auth__rodape"><a href="login.html"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar para o login</a></p>
+            </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/formas.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sessao.js"></script>
+    <script src="js/notificacao.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/redefinir-senha.js"></script>
+</body>
+
+</html>

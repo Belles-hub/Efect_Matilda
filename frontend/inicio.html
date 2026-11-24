@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#c9a8f7">
+    <title>Início — Efect Matilda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/matilda.css">
+    <link rel="stylesheet" href="css/formas.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="js/acess.js"></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="app">
+        <nav id="nav"></nav>
+
+        <main id="conteudo" class="pagina">
+            <header id="topo"></header>
+
+            <section class="saudacao entrar" aria-labelledby="ola">
+                <button type="button" data-forma="sol" data-cor="amarelo" data-emocao="feliz" data-toque data-flutua></button>
+                <h1 id="ola">…</h1>
+                <p class="frase" id="frase"></p>
+            </section>
+
+            <a class="chat-cta entrar" href="matilda.html">
+                <span class="chat-cta__icone"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i></span>
+                <span class="chat-cta__txt"><strong>Converse com a Matilda</strong><small>Tire dúvidas, monte planos de estudo e mapas mentais</small></span>
+                <i class="fa-solid fa-arrow-right chat-cta__seta" aria-hidden="true"></i>
+            </a>
+
+            <section class="secao humor" aria-labelledby="tHumor">
+                <h2 id="tHumor" style="margin-bottom:0">Como você está hoje?</h2>
+                <p class="subtitulo">Toque na forminha que combina com seu dia.</p>
+                <div class="humor__opcoes" id="humorOpcoes" role="group" aria-labelledby="tHumor"></div>
+                <div id="humorResposta" aria-live="polite"></div>
+            </section>
+
+            <section class="secao" aria-labelledby="tDescobrir">
+                <h2 id="tDescobrir" style="margin-bottom:4px">O que você gostaria de descobrir hoje?</h2>
+                <p class="subtitulo" style="margin-bottom:14px">Escolha uma área e comece a explorar.</p>
+                <div class="categorias" id="categorias"></div>
+            </section>
+
+            <section class="secao" aria-labelledby="tExperimente">
+                <h2 id="tExperimente" class="sr-only">Experimente antes de escolher</h2>
+                <div id="palcoDesafio" aria-live="polite"><div class="esqueleto" style="min-height:200px" aria-hidden="true"></div></div>
+            </section>
+
+            <section class="secao" aria-labelledby="tJornada">
+                <h2 id="tJornada" style="margin-bottom:10px">Sua jornada</h2>
+                <div id="jornada" aria-live="polite"><div class="esqueleto" style="min-height:70px" aria-hidden="true"></div></div>
+            </section>
+
+            <section class="secao" aria-labelledby="tAtalhos">
+                <h2 id="tAtalhos" style="margin-bottom:12px">Atalhos rápidos</h2>
+                <div class="atalhos">
+                    <a class="atalho" style="background:var(--c-lilas)" href="matilda.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i><span>Falar com a Matilda</span></a>
+                    <a class="atalho" style="background:var(--c-amarelo)" href="oportunidades.html"><i class="fa-solid fa-trophy" aria-hidden="true"></i><span>Ver oportunidades</span></a>
+                    <a class="atalho" style="background:var(--c-ciano)" href="projetos.html"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i><span>Meus projetos</span></a>
+                    <a class="atalho" style="background:var(--c-coral)" href="passaporte.html"><i class="fa-solid fa-passport" aria-hidden="true"></i><span>Meu passaporte</span></a>
+                    <a class="atalho atalho--largo" style="background:var(--c-laranja)" href="acessibilidade.html"><i class="fa-solid fa-universal-access" aria-hidden="true"></i><span>Ajustar acessibilidade</span></a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/formas.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sessao.js"></script>
+    <script src="js/notificacao.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/inicio.js"></script>
+</body>
+
+</html>

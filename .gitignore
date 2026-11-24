@@ -1,0 +1,22 @@
+# Ambientes virtuais e caches
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Segredos: nunca vão para o git
+.env
+credentials/
+*.bak
+*service-account*.json
+
+# Banco local antigo
+*.db
+
+# Editores e sistema
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+node_modules/

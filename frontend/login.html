@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#c9a8f7">
+    <title>Entrar — Efect Matilda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/matilda.css">
+    <link rel="stylesheet" href="css/formas.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/auth-pagina.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="js/acess.js"></script>
+</head>
+
+<body class="auth-page">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="ap">
+        <aside class="ap-lado">
+            <a class="ap-logo" href="index.html" aria-label="Matilda, voltar para o início">
+                <img src="img/logo-bonequinho.png" alt="Efect Matilda">
+            </a>
+
+            <div class="ap-lado__texto">
+                <h2>Bem-vinda de volta.</h2>
+                <p>Entre para continuar seus desafios, sua conversa com a Matilda e o seu Passaporte.</p>
+            </div>
+            <div class="ap-arte" aria-hidden="true"></div>
+        </aside>
+
+        <main class="ap-form" id="conteudo">
+            <p class="ap-form__topo">Ainda não tem conta? <a href="cadastro.html">Criar conta</a></p>
+            <div class="ap-form__centro">
+            <div class="auth__miolo">
+                <h1>Entrar</h1>
+                <p class="subtitulo">Que bom te ver de novo! Entre para continuar de onde parou.</p>
+
+                <div id="avisoLogin" class="cu-notificacao-area"></div>
+
+                <form id="formLogin" novalidate>
+                    <div class="campo">
+                        <label for="email">E-mail</label>
+                        <div class="entrada"><i class="entrada__icone fa-solid fa-envelope" aria-hidden="true"></i><input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="nome@exemplo.com" required></div>
+                        <p class="campo__erro" id="email-erro" role="alert"></p>
+                    </div>
+
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+                        <div class="senha-wrap">
+                            <i class="entrada__icone fa-solid fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="senha" name="senha" autocomplete="current-password" placeholder="Sua senha" required>
+                            <button type="button" aria-label="Mostrar senha" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                        </div>
+                        <p class="campo__erro" id="senha-erro" role="alert"></p>
+                        <a href="redefinir-senha.html" style="justify-self:end;font-weight:700;font-size:.9rem">Esqueceu a senha?</a>
+                    </div>
+
+                    <button class="btn btn--primario btn--bloco" type="submit" id="btnEntrar">Entrar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                </form>
+
+                <div class="divisor">ou</div>
+
+                <button class="btn btn--google btn--bloco" type="button" id="btnGoogle">
+                    <i class="fa-brands fa-google" aria-hidden="true"></i> Continuar com Google
+                </button>
+
+                <p class="auth__rodape">Ainda não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+                <p class="auth__nota"><i class="fa-solid fa-lock" aria-hidden="true"></i> Seus dados ficam protegidos. <a href="termos.html">Saiba mais</a></p>
+            </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/formas.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sessao.js"></script>
+    <script src="js/notificacao.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/login.js"></script>
+</body>
+
+</html>

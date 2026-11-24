@@ -1,0 +1,512 @@
+/* =========================================================
+   TELAS DE ENTRADA (entrar, criar conta, recuperar senha)
+
+   Mesma identidade da landing: painel ameixa com a logo e um mascote,
+   formulário limpo num fundo neutro. No celular o painel vira uma faixa
+   no topo e o formulário sobe como uma folha; no desktop ficam lado a
+   lado. As variáveis (--ameixa, --rosa...) vêm do landing.css.
+========================================================= */
+
+body.auth-page { min-height: 100vh; }
+
+.ap { min-height: 100vh; display: grid; grid-template-rows: auto 1fr; }
+
+/* ---------- painel ameixa ---------- */
+
+.ap-lado {
+  position: relative; overflow: hidden; color: #fff; padding: 20px var(--gutter) 44px;
+  display: grid; grid-template-columns: 1fr auto; grid-template-areas: "logo logo" "texto mascote"; gap: 18px 12px; align-items: center;
+  background: radial-gradient(120% 100% at 90% 0%, var(--ameixa-fundo) 0%, var(--ameixa) 62%);
+}
+.ap-logo { grid-area: logo; display: inline-block; line-height: 0; justify-self: start; }
+.ap-logo img { height: 40px; width: auto; display: block; }
+.ap-lado__texto { grid-area: texto; display: grid; gap: 8px; }
+.ap-lado__texto h2 { color: #fff; font-size: 1.55rem; line-height: 1.15; max-width: 16ch; }
+.ap-lado__texto p { color: #e6d8fa; font-size: 0.95rem; line-height: 1.5; max-width: 34ch; }
+.ap-lado a:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+.ap-mascote { grid-area: mascote; position: relative; display: grid; place-items: center; width: 112px; height: 112px; }
+.ap-mascote__halo { position: absolute; inset: 0; border-radius: 50%; background: rgba(193, 127, 252, 0.16); }
+.ap-mascote .forma { --tam: 88px; position: relative; }
+.ap-mascote button.forma--toque:focus-visible { outline: 3px solid #fff; }
+
+/* ---------- formulário ---------- */
+
+.ap-form {
+  position: relative; margin-top: -24px; padding: 30px var(--gutter) 40px;
+  background: var(--l-cartao); border-radius: 28px 28px 0 0; color: var(--l-texto);
+}
+.ap-form .auth__miolo { max-width: 440px; margin: 0 auto; }
+.ap-form h1 { text-align: left; font-size: 1.7rem; margin-bottom: 6px; color: var(--l-texto); }
+.ap-form .auth__miolo > .subtitulo { text-align: left; margin-bottom: 22px; color: var(--l-texto-2); }
+
+.ap-grupo {
+  margin: 22px 0 12px; padding-bottom: 8px; border-bottom: 2px solid var(--l-borda);
+  font: 800 0.78rem var(--fonte-titulo); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ameixa);
+}
+.ap-grupo:first-child { margin-top: 0; }
+form > .ap-grupo:first-child { margin-top: 4px; }
+html[data-tema="escuro"] .ap-grupo { color: var(--rosa); }
+
+.ap-form .campo label { color: var(--l-texto); }
+.ap-form input[type="text"], .ap-form input[type="email"], .ap-form input[type="password"], .ap-form select {
+  min-height: 52px; border-radius: 16px; border: 2px solid var(--l-borda); background: var(--l-fundo); color: var(--l-texto);
+}
+.ap-form input:focus, .ap-form select:focus { outline: none; border-color: var(--ameixa); box-shadow: 0 0 0 4px rgba(63, 19, 99, 0.18); background: var(--l-cartao); }
+html[data-tema="escuro"] .ap-form input:focus, html[data-tema="escuro"] .ap-form select:focus { border-color: var(--rosa); box-shadow: 0 0 0 4px rgba(193, 127, 252, 0.24); }
+.ap-form input[aria-invalid="true"], .ap-form .campo--erro input, .ap-form .campo--erro select { border-color: var(--erro); }
+.ap-form .campo .dica { color: var(--l-texto-2); }
+
+.ap-form .btn--primario { background: var(--ameixa); color: #fff; min-height: 54px; border-radius: 999px; font-weight: 700; }
+.ap-form .btn--primario:hover:not(:disabled) { background: #5b2a86; transform: translateY(-2px); }
+html[data-tema="escuro"] .ap-form .btn--primario { background: var(--rosa); color: var(--ameixa); }
+html[data-tema="escuro"] .ap-form .btn--primario:hover:not(:disabled) { background: #cdb8f2; }
+.ap-form .btn--google { min-height: 54px; border-radius: 999px; background: var(--l-cartao); color: var(--l-texto); border: 2px solid var(--l-borda); }
+.ap-form .btn--google:hover { border-color: var(--ameixa); }
+html[data-tema="escuro"] .ap-form .btn--google:hover { border-color: var(--rosa); }
+
+.ap-form a { color: #5b2a86; font-weight: 700; }
+html[data-tema="escuro"] .ap-form a { color: var(--rosa); }
+.ap-form .divisor { color: var(--l-texto-2); }
+.ap-form .divisor::before, .ap-form .divisor::after { background: var(--l-borda); }
+.ap-form .auth__nota, .ap-form .auth__rodape { color: var(--l-texto-2); }
+.ap-form .auth__rodape { margin-top: 22px; }
+.ap-form .check span { color: var(--l-texto); }
+.ap-form .senha-wrap button { color: var(--l-texto-2); }
+
+/* ---------- desktop: lado a lado ---------- */
+
+@media (min-width: 900px) {
+  .ap { grid-template-columns: minmax(380px, 46%) 1fr; grid-template-rows: 1fr; }
+
+  .ap-lado {
+    grid-template-columns: 1fr; grid-template-areas: "logo" "texto" "mascote"; align-content: space-between;
+    padding: 40px 56px 56px; min-height: 100vh; position: sticky; top: 0; height: 100vh;
+  }
+  .ap-logo img { height: 50px; }
+  .ap-lado__texto { gap: 14px; }
+  .ap-lado__texto h2 { font-size: clamp(2rem, 3.2vw, 2.9rem); max-width: 14ch; }
+  .ap-lado__texto p { font-size: 1.08rem; }
+  .ap-mascote { width: 240px; height: 240px; justify-self: start; }
+  .ap-mascote .forma { --tam: 190px; }
+
+  .ap-form {
+    margin-top: 0; border-radius: 0; background: var(--l-fundo); display: flex; align-items: center; padding: 48px;
+  }
+  .ap-form .auth__miolo {
+    width: 100%; max-width: 460px; padding: 36px; border-radius: 28px; background: var(--l-cartao);
+    border: 1px solid var(--l-borda); box-shadow: 0 18px 40px rgba(63, 19, 99, 0.10);
+  }
+  html[data-tema="escuro"] .ap-form .auth__miolo { box-shadow: none; }
+}
+
+/* ---------- foco e contraste ---------- */
+
+html[data-foco="1"] .ap-mascote { display: none; }
+html[data-contraste="alto"] .ap-lado { background: #000; }
+html[data-contraste="alto"] .ap-form input, html[data-contraste="alto"] .ap-form select { border: 3px solid #000; }
+
+.ap-form form .auth__nota { margin: 4px 0 16px; }
+
+/* comemoração depois do cadastro, na mesma paleta */
+body.auth-page .boas-vindas { background: var(--ameixa); }
+body.auth-page .boas-vindas .icone-circulo { color: var(--ameixa); }
+body.auth-page .boas-vindas p { color: #e6d8fa; }
+
+/* ---------- frases no painel ---------- */
+
+.ap-frase {
+  grid-area: frase; margin: 0; display: grid; gap: 6px; padding: 14px 16px; border-radius: 18px;
+  background: rgba(255, 255, 255, 0.14); transition: opacity 0.4s ease;
+}
+.ap-frase blockquote { margin: 0; }
+.ap-frase blockquote p { color: #fff; font: 600 0.98rem/1.4 var(--fonte-titulo); }
+.ap-frase figcaption { color: #ddd0f2; font-size: 0.82rem; font-weight: 600; }
+.ap-frase figcaption::before { content: "— "; }
+.ap-frase--saindo { opacity: 0; }
+
+@media (max-width: 899px) {
+  .ap-lado { grid-template-areas: "logo logo" "texto mascote" "frase frase"; }
+}
+@media (min-width: 900px) {
+  .ap-lado { grid-template-areas: "logo" "texto" "frase" "mascote"; }
+  .ap-frase { max-width: 380px; padding: 18px 20px; }
+  .ap-frase blockquote p { font-size: 1.12rem; }
+}
+
+/* =========================================================
+   FORMULÁRIO EM TELA CHEIA — organizado e sem ruído
+========================================================= */
+
+/* ícones à esquerda dos campos */
+.entrada, .ap-form .senha-wrap { position: relative; }
+.entrada__icone {
+  position: absolute; left: 18px; top: 50%; transform: translateY(-50%); z-index: 1;
+  color: var(--l-texto-2); font-size: 0.95rem; pointer-events: none; transition: color 0.15s;
+}
+.ap-form .entrada input, .ap-form .entrada select, .ap-form .senha-wrap input { padding-left: 48px; }
+.entrada:focus-within .entrada__icone, .senha-wrap:focus-within .entrada__icone { color: var(--ameixa); }
+html[data-tema="escuro"] .entrada:focus-within .entrada__icone,
+html[data-tema="escuro"] .senha-wrap:focus-within .entrada__icone { color: var(--rosa); }
+.ap-form select { padding-right: 40px; }
+
+/* o link "criar conta / entrar" do topo só aparece no desktop (no celular já existe no fim) */
+.ap-form__topo { display: none; }
+.ap-form__centro { width: 100%; }
+
+/* menos ruído: títulos de bloco mais discretos, avisos mais leves */
+.ap-grupo { margin: 18px 0 12px; }
+.ap-form .auth__nota { font-size: 0.8rem; line-height: 1.45; }
+.ap-form .cu-notificacao-area:empty { display: none; }
+
+/* celular: só o essencial no painel (logo, título, mascote) */
+@media (max-width: 899px) {
+  .ap-frase { display: none; }
+  .ap-lado { grid-template-areas: "logo logo" "texto mascote"; padding-bottom: 40px; }
+  .ap-lado__texto p { display: none; }
+  .ap-form h1 { font-size: 1.5rem; }
+}
+
+@media (min-width: 900px) {
+  /* a metade direita inteira é o formulário: sem cartão, sem moldura */
+  .ap-form {
+    display: grid; grid-template-rows: auto 1fr auto; align-items: stretch; justify-items: center;
+    padding: 28px 56px 32px; min-height: 100vh; background: var(--l-cartao);
+  }
+  .ap-form__topo {
+    display: block; justify-self: end; font-size: 0.95rem; color: var(--l-texto-2);
+  }
+  .ap-form__topo a { margin-left: 4px; }
+  .ap-form__centro { display: flex; align-items: center; justify-content: center; }
+  .ap-form .auth__miolo {
+    max-width: 440px; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none;
+  }
+  .ap-form h1 { font-size: 2rem; }
+  .ap-form .auth__rodape { display: none; }
+  .ap-form .auth__miolo > .subtitulo { margin-bottom: 26px; }
+
+  /* cadastro: campos em duas colunas pra caber tudo na tela */
+  #formCadastro { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+  #formCadastro > .ap-grupo, #formCadastro > .campo:has(.check), #formCadastro > .auth__nota,
+  #formCadastro > .btn { grid-column: 1 / -1; }
+  #formCadastro + .divisor, #formCadastro ~ .divisor { margin: 14px 0; }
+  .ap-form:has(#formCadastro) .auth__miolo { max-width: 680px; }
+  .ap-form:has(#formCadastro) .campo { margin-bottom: 12px; }
+  .ap-form:has(#formCadastro) input[type="text"], .ap-form:has(#formCadastro) input[type="email"],
+  .ap-form:has(#formCadastro) input[type="password"], .ap-form:has(#formCadastro) select { min-height: 48px; }
+  .ap-form:has(#formCadastro) h1 { font-size: 1.75rem; }
+  .ap-form:has(#formCadastro) .auth__miolo > .subtitulo { margin-bottom: 14px; }
+}
+
+/* telas baixas: aperta o espaço vertical em vez de rolar */
+@media (min-width: 900px) and (max-height: 820px) {
+  .ap-form:has(#formCadastro) .ap-grupo { margin: 10px 0 8px; padding-bottom: 6px; }
+  .ap-form:has(#formCadastro) .campo { margin-bottom: 8px; gap: 4px; }
+  .ap-form:has(#formCadastro) .auth__nota { margin: 2px 0 10px; }
+}
+
+/* ajustes finos do cadastro em tela cheia */
+@media (min-width: 900px) {
+  #formCadastro > .campo { align-self: start; }
+  .ap-form:has(#formCadastro) .campo .dica { display: none; }
+  .ap-form:has(#formCadastro) .auth__miolo > .subtitulo { display: none; }
+  .ap-form:has(#formCadastro) h1 { margin-bottom: 14px; }
+  .ap-form:has(#formCadastro) input[type="text"], .ap-form:has(#formCadastro) input[type="email"],
+  .ap-form:has(#formCadastro) input[type="password"], .ap-form:has(#formCadastro) select { min-height: 46px; }
+  .ap-form:has(#formCadastro) select { font-size: 0.88rem; padding-left: 44px; padding-right: 30px; text-overflow: ellipsis; }
+  .ap-form:has(#formCadastro) .campo { margin-bottom: 10px; }
+  .ap-form:has(#formCadastro) .ap-grupo { margin: 12px 0 8px; padding-bottom: 6px; }
+  .ap-form:has(#formCadastro) .btn { min-height: 48px; }
+  .ap-form:has(#formCadastro) .divisor { margin: 10px 0; }
+  .ap-form { padding-top: 20px; padding-bottom: 20px; }
+}
+
+/* menina estudando no painel das telas de entrada */
+.ap-mascote { width: 112px; height: 112px; }
+.ap-mascote__halo { display: none; }
+.ap-mascote .menina { width: 100%; height: 100%; box-shadow: none; }
+@media (min-width: 900px) {
+  .ap-mascote { width: 220px; height: 220px; }
+}
+
+/* =========================================================
+   CADASTRO EM DOIS PASSOS — menos informação por vez
+========================================================= */
+
+.cad-passos { display: grid; gap: 8px; margin-bottom: 22px; }
+.cad-passos__texto { font: 800 0.78rem var(--fonte-titulo); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ameixa); }
+html[data-tema="escuro"] .cad-passos__texto { color: var(--rosa); }
+.cad-passos__barra { height: 8px; border-radius: 999px; background: var(--l-borda); overflow: hidden; }
+.cad-passos__barra span { display: block; height: 100%; width: 50%; border-radius: 999px; background: var(--ameixa); transition: width 0.35s ease; }
+html[data-tema="escuro"] .cad-passos__barra span { background: var(--rosa); }
+
+.cad-passo { animation: subir 0.3s ease both; }
+.cad-grade { display: grid; grid-template-columns: 1fr; gap: 0 16px; }
+.cad-botoes { display: grid; grid-template-columns: auto 1fr; gap: 12px; margin-top: 4px; }
+.cad-botoes .btn { min-height: 54px; border-radius: 999px; font-weight: 700; }
+.ap-form .btn--contorno { background: transparent; color: var(--l-texto); border: 2px solid var(--l-borda); padding: 0 22px; }
+.ap-form .btn--contorno:hover { border-color: var(--ameixa); }
+html[data-tema="escuro"] .ap-form .btn--contorno:hover { border-color: var(--rosa); }
+#cadGoogle { margin-top: 4px; }
+#cadGoogle .divisor { margin: 20px 0; }
+
+/* termos: caixa maior e texto mais leve */
+.ap-form .check { padding: 14px 16px; border: 2px solid var(--l-borda); border-radius: 16px; background: var(--l-fundo); align-items: center; }
+.ap-form .check input { width: 22px; height: 22px; accent-color: var(--ameixa); }
+.ap-form .check span { font-size: 0.9rem; line-height: 1.45; }
+.ap-form .campo--erro .check { border-color: var(--erro); }
+
+@media (min-width: 900px) {
+  /* com menos campos por tela, volta a respirar (anula o modo "tudo numa tela só") */
+  #formCadastro { display: block; }
+  .ap-form:has(#formCadastro) .auth__miolo { max-width: 520px; }
+  .ap-form:has(#formCadastro) .auth__miolo > .subtitulo { display: block; margin-bottom: 22px; }
+  .ap-form:has(#formCadastro) h1 { font-size: 2rem; margin-bottom: 6px; }
+  .ap-form:has(#formCadastro) .campo { margin-bottom: 16px; gap: 6px; }
+  .ap-form:has(#formCadastro) .campo .dica { display: block; }
+  .ap-form:has(#formCadastro) input[type="text"], .ap-form:has(#formCadastro) input[type="email"],
+  .ap-form:has(#formCadastro) input[type="password"], .ap-form:has(#formCadastro) select { min-height: 52px; }
+  .ap-form:has(#formCadastro) select { font-size: 0.95rem; }
+  .ap-form:has(#formCadastro) .btn { min-height: 54px; }
+  .cad-grade { grid-template-columns: 1fr 1fr; }
+  /* a pergunta de segurança é longa: fica de largura total */
+  #cadPasso2 .cad-grade { grid-template-columns: 1fr; }
+}
+
+/* painel: título + frase + ilustração; o parágrafo a mais só poluía */
+.ap-lado__texto p { display: none; }
+
+/* cadastro: a ilustração da menina com a gatinha é a protagonista do painel */
+.menina--foto { background: #f9f2ec; }
+.menina--foto img { object-position: 58% 40%; transform: scale(1.12); transform-origin: 58% 40%; }
+.ap-lado:has(.menina--foto) .ap-frase { display: none; }
+
+@media (min-width: 900px) {
+  .ap-mascote--foto { width: min(340px, 100%); height: auto; aspect-ratio: 1 / 1; }
+  .menina--foto { border-radius: 28px; box-shadow: 0 20px 44px rgba(18, 7, 31, 0.28); }
+  .menina--foto img { transform: none; object-position: center; }
+}
+
+/* =========================================================
+   Uma ilustração e uma frase por tela
+========================================================= */
+
+/* a arte tem fundo transparente: ganha um cartão claro pra aparecer bem sobre o ameixa */
+.menina--foto { background: #f1e9fc; }
+.menina--foto img { object-fit: cover; object-position: 50% 30%; transform: scale(1.1); transform-origin: 50% 30%; }
+.ap-lado:has(.menina--foto) .ap-frase { display: grid; }
+
+/* frase: sem caixa, só um fio de destaque, bem legível */
+.ap-frase { background: none; padding: 2px 0 2px 16px; border-left: 4px solid rgba(255, 255, 255, 0.55); border-radius: 0; gap: 8px; }
+.ap-frase blockquote p { font: 700 1.2rem/1.35 var(--fonte-titulo); color: #fff; }
+.ap-frase figcaption { color: #e6d8fa; font-size: 0.9rem; font-weight: 700; letter-spacing: 0.02em; }
+
+@media (max-width: 899px) { .ap-frase, .ap-lado:has(.menina--foto) .ap-frase { display: none; } }
+
+@media (min-width: 900px) {
+  .ap-mascote--foto { width: min(360px, 100%); }
+  .menina--foto { border-radius: 32px; }
+  .menina--foto img { object-fit: contain; transform: none; padding: 6px; }
+  .ap-frase { max-width: 420px; padding: 4px 0 4px 20px; }
+  .ap-frase blockquote p { font-size: 1.45rem; }
+}
+
+/* =========================================================
+   Ilustração SEM fundo: recorte solto no painel, com contorno de adesivo
+   (o contorno claro garante que roupas e cabelo escuros não sumam no ameixa)
+========================================================= */
+
+.menina--foto, .menina.menina--foto {
+  background: none; border-radius: 0; overflow: visible; box-shadow: none;
+}
+.menina--foto img, .ap-mascote .menina--foto img {
+  object-fit: contain; object-position: center bottom; transform: none; padding: 0;
+  filter:
+    drop-shadow(3px 0 0 #f1e9fc) drop-shadow(-3px 0 0 #f1e9fc)
+    drop-shadow(0 3px 0 #f1e9fc) drop-shadow(0 -3px 0 #f1e9fc)
+    drop-shadow(0 14px 18px rgba(18, 7, 31, 0.28));
+}
+.menina--foto:focus-visible { outline: 3px solid #fff; outline-offset: 6px; border-radius: 24px; }
+
+/* celular: recorte pequeno ao lado do título, sem círculo */
+.ap-mascote--foto { width: 124px; height: 124px; }
+
+@media (min-width: 900px) {
+  .ap-mascote--foto { width: min(400px, 100%); height: auto; aspect-ratio: 1 / 1; justify-self: start; }
+  .menina--foto { border-radius: 0; }
+}
+
+/* =========================================================
+   Recorte sem contorno: as bordas cortadas da arte se escondem
+   (desktop: encostada no canto do painel; celular: borda esmaecida)
+========================================================= */
+
+.menina--foto img, .ap-mascote .menina--foto img {
+  filter: drop-shadow(0 12px 16px rgba(18, 7, 31, 0.3));
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%), linear-gradient(to bottom, #000 80%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 14%, #000 86%, transparent 100%), linear-gradient(to bottom, #000 80%, transparent 100%);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+
+@media (min-width: 900px) {
+  /* colada no canto de baixo à direita: as bordas cortadas ficam na borda do painel */
+  .ap-mascote--foto {
+    position: absolute; right: 0; bottom: 0; width: min(420px, 78%); height: auto; aspect-ratio: 1 / 1; justify-self: auto;
+  }
+  .menina--foto img, .ap-mascote .menina--foto img {
+    filter: none;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%);
+    mask-image: linear-gradient(to right, transparent 0, #000 12%);
+  }
+}
+
+/* =========================================================
+   Painel enxuto: logo, título e uma ilustração só (sem frases)
+========================================================= */
+
+.ap-frase { display: none !important; }
+
+@media (min-width: 900px) {
+  .ap-lado { align-content: start; gap: 36px; }
+  .ap-lado__texto h2 { font-size: clamp(2.2rem, 3.4vw, 3.1rem); }
+  .ap-mascote--foto { width: min(470px, 86%); }
+}
+
+@media (min-width: 900px) {
+  /* sem área de grade própria, o canto de baixo é o do painel inteiro (não o da linha) */
+  .ap-mascote--foto { grid-area: auto; }
+}
+
+/* =========================================================
+   Ilustração parada e grande, preenchendo o painel
+========================================================= */
+
+.menina, .menina--foto { animation: none !important; cursor: default; transition: none; }
+
+@media (min-width: 900px) {
+  .ap-mascote--foto { width: min(100%, calc(100vh - 230px)); }
+}
+@media (max-width: 899px) {
+  .ap-mascote--foto { width: 150px; height: 150px; }
+}
+
+/* bonequinho da logo: só menor (o resto da tela fica como estava) */
+.ap-logo img { height: clamp(34px, 8vw, 40px); width: auto; }
+@media (min-width: 900px) { .ap-logo img { height: 46px; } }
+
+/* =========================================================
+   Painel com arte colorida (laranja + bolhas amarela e rosa), adaptável
+   Arte: img/arte-entrada.svg — preenche o painel inteiro
+========================================================= */
+
+.ap-lado { background: #3f1363; }
+.ap-arte {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: url("../img/arte-entrada.svg") no-repeat; background-size: cover; background-position: center bottom;
+}
+.ap-lado > *:not(.ap-arte) { position: relative; z-index: 1; }
+.ap-lado__texto h2 { color: #fff; }
+.ap-lado__texto p { color: #fff; }
+.ap-logo img { filter: none; }
+
+/* celular: faixa baixa — mostra as duas bolhas com o rosto, de lado */
+@media (max-width: 899px) {
+  .ap-lado { min-height: 200px; }
+  .ap-arte { background-size: 190% auto; background-position: 72% 74%; }
+}
+
+/* desktop: título no topo e a arte ocupa o resto do painel */
+@media (min-width: 900px) {
+  .ap-lado { align-content: start; }
+  .ap-arte { background-size: cover; background-position: center bottom; }
+}
+
+html[data-contraste="alto"] .ap-arte { opacity: 0.35; }
+html[data-contraste="alto"] .ap-lado { background: #000; }
+
+/* contraste: o título fica sempre sobre o laranja, nunca sobre as bolhas */
+@media (max-width: 899px) {
+  .ap-lado { min-height: 250px; padding-bottom: 36px; }
+  .ap-arte { top: 52%; background-size: cover; background-position: 62% 64%; }
+  .ap-lado__texto h2 { max-width: 14ch; }
+}
+@media (min-width: 900px) {
+  .ap-lado__texto h2 { max-width: 9ch; }
+}
+
+@media (max-width: 899px) {
+  .ap-lado { min-height: 300px; }
+  .ap-arte { top: 58%; bottom: 20px; background-size: 150% auto; background-position: 66% 78%; }
+}
+
+@media (max-width: 899px) {
+  .ap-lado { min-height: 270px; align-content: start; row-gap: 16px; padding-bottom: 20px; }
+  .ap-arte { top: 62%; bottom: 0; background-size: 135% auto; background-position: 66% 80%; }
+}
+
+/* telas de entrada: bonequinho branco centralizado no topo do painel, nos dois modos */
+.ap-logo { justify-self: center; }
+@media (min-width: 900px) { .ap-lado { justify-items: center; } .ap-lado__texto { text-align: center; justify-items: center; } }
+
+/* entrar / criar conta / recuperar senha: bonequinho centralizado e mais afastado do topo */
+.ap-lado { padding-top: 44px; }
+.ap-logo { justify-self: center; }
+@media (min-width: 900px) { .ap-lado { padding-top: 64px; } .ap-lado > .ap-logo { margin: 0 auto; } }
+
+/* desktop: a arte começa abaixo do título, que fica sempre sobre o laranja (legível) */
+@media (min-width: 900px) {
+  .ap-arte { top: 42%; background-size: cover; background-position: 50% 100%; }
+  .ap-lado { gap: 36px; }
+  .ap-lado__texto h2 { max-width: 14ch; }
+}
+
+/* =========================================================
+   Entrar / criar conta: mascote (logo) e frase no canto superior esquerdo
+========================================================= */
+
+.ap-logo, .ap-lado > .ap-logo { justify-self: start; margin: 0; }
+.ap-lado { justify-items: start; }
+.ap-lado__texto { text-align: left; justify-items: start; }
+@media (min-width: 900px) {
+  .ap-lado { padding: 40px 56px; }
+  .ap-lado > .ap-logo { margin: 0; }
+  .ap-lado__texto h2 { max-width: 12ch; }
+  /* arte na altura toda do painel, colada embaixo; sobra laranja à esquerda (mesma cor do painel) */
+  .ap-arte { top: 0; background-size: auto 100%; background-position: 100% 100%; }
+}
+@media (max-width: 899px) {
+  .ap-lado { padding-top: 28px; }
+}
+
+@media (min-width: 900px) {
+  /* arte cobrindo o painel inteiro (sem emendas), deslocada pra baixo: o título fica no laranja */
+  .ap-arte { top: 0; background-size: cover; background-position: 50% calc(100% + 200px); }
+}
+
+/* painel roxo escuro com bolhas amarela e laranja (combina com a plataforma) */
+.ap-lado { background: #3f1363; }
+html[data-tema="escuro"] .ap-lado { background: #2d0b42; }
+
+/* celular: título de 3 linhas (cadastro) não encosta na arte */
+@media (max-width: 899px) {
+  .ap-lado { min-height: 300px; }
+  .ap-arte { top: 68%; }
+}
+
+/* painel rosa claro com bolhas amarela e roxa; texto e logo em roxo escuro */
+.ap-lado, html[data-tema="escuro"] .ap-lado { background: #F9C6E0; }
+.ap-lado__texto h2, .ap-lado__texto p { color: #3f1363; }
+
+/* painel roxo escuro de novo; as bolinhas é que são rosa claro e amarela */
+.ap-lado, html[data-tema="escuro"] .ap-lado { background: #3f1363; }
+html[data-tema="escuro"] .ap-lado { background: #2d0b42; }
+.ap-lado__texto h2, .ap-lado__texto p { color: #fff; }
+
+/* painel de entrada: malha de gradientes por trás das bolinhas */
+.ap-lado, html[data-tema="escuro"] .ap-lado {
+  background-color: #3f1363;
+  background-image:
+    radial-gradient(70% 55% at 0% 0%, rgba(185, 90, 170, 0.55) 0%, transparent 70%),
+    radial-gradient(70% 55% at 100% 30%, rgba(123, 79, 196, 0.6) 0%, transparent 70%),
+    radial-gradient(60% 45% at 30% 60%, rgba(255, 138, 61, 0.18) 0%, transparent 70%);
+}

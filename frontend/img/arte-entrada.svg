@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1750" preserveAspectRatio="xMidYMax slice">
+  
+
+  <!-- bolha amarela (esquerda) -->
+  <circle cx="90" cy="1565" r="545" fill="#FFCD00"/>
+  <!-- bolha rosa (direita) -->
+  <ellipse cx="1010" cy="1165" rx="470" ry="450" fill="#F9C6E0"/>
+
+  <g fill="none" stroke="#2a0b45" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <!-- rosto da amarela -->
+    <path d="M229 1105 C245 1250 350 1332 490 1332"/>
+    <path d="M305 1135 C300 1185 340 1195 366 1180"/>
+    <path d="M393 1212 C390 1262 425 1270 452 1262"/>
+    <!-- rosto da rosa -->
+    <path d="M668 1052 C745 1110 772 1230 705 1315"/>
+    <path d="M628 1103 C678 1106 692 1150 636 1180"/>
+    <path d="M640 1210 C692 1210 702 1262 650 1286"/>
+  </g>
+</svg>

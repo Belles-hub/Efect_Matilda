@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#3f1363">
+    <title>Perfil — Efect Matilda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/matilda.css">
+    <link rel="stylesheet" href="css/formas.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="js/acess.js"></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="app">
+        <nav id="nav"></nav>
+
+        <main id="conteudo" class="pagina" style="max-width:760px">
+            <header id="topo"></header>
+
+            <section class="perfil-cartao entrar" aria-labelledby="nomePerfil">
+                <span class="icone-circulo icone-circulo--grande perfil-cartao__av" id="avatarTopo"><i class="fa-solid fa-flask" aria-hidden="true"></i></span>
+                <div class="perfil-cartao__id">
+                    <h1 id="nomePerfil">…</h1>
+                    <p id="emailPerfil"></p>
+                    <span class="selo" id="seloSerie" hidden></span>
+                </div>
+                <dl class="perfil-resumo">
+                    <div><dt><i class="fa-solid fa-envelope" aria-hidden="true"></i> E-mail</dt><dd id="resEmail">…</dd></div>
+                    <div><dt><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Série</dt><dd id="resSerie">…</dd></div>
+                    <div><dt><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Cidade/Estado</dt><dd id="resLocal">…</dd></div>
+                    <div><dt><i class="fa-solid fa-star" aria-hidden="true"></i> Interesses</dt><dd id="resInteresses">…</dd></div>
+                </dl>
+            </section>
+
+            <div id="avisoPerfil" class="cu-notificacao-area" style="margin-top:16px"></div>
+
+            <p class="perfil-grupo">Sobre você</p>
+
+            <section class="secao card" aria-labelledby="tAvatar">
+                <h2 id="tAvatar" style="margin-bottom:6px">Seu ícone</h2>
+                <p class="subtitulo" style="margin-bottom:14px">Aparece na bolinha do canto da tela.</p>
+                <div class="avatares" id="avatares" role="group" aria-labelledby="tAvatar"></div>
+            </section>
+
+            <section class="secao card" aria-labelledby="tInteresses">
+                <h2 id="tInteresses" style="margin-bottom:6px">Seus interesses</h2>
+                <p class="subtitulo" style="margin-bottom:14px">Usamos isso pra sugerir desafios e oportunidades. Toque pra adicionar ou remover.</p>
+                <div class="opcoes" id="interesses" role="group" aria-labelledby="tInteresses"></div>
+                <p style="margin-top:12px"><a href="descobrir.html" style="font-weight:700"><i class="fa-solid fa-rotate" aria-hidden="true"></i> Refazer a descoberta de interesses</a></p>
+            </section>
+
+            <section class="secao card" aria-labelledby="tExperimentar">
+                <h2 id="tExperimentar" style="margin-bottom:6px">Quero experimentar</h2>
+                <p class="subtitulo" style="margin-bottom:14px">Áreas que você ainda não conhece, mas tem vontade de testar. A Matilda usa isso pra sugerir um primeiro passo.</p>
+                <div class="opcoes" id="experimentar" role="group" aria-labelledby="tExperimentar"></div>
+            </section>
+
+            <section class="secao card" aria-labelledby="tObjetivo">
+                <h2 id="tObjetivo" style="margin-bottom:6px">Seu objetivo</h2>
+                <p class="subtitulo" style="margin-bottom:14px">O que você quer buscar ou alcançar com a ciência e a tecnologia?</p>
+                <div class="campo" style="margin-bottom:0">
+                    <label for="campoObjetivo">Conte em poucas palavras</label>
+                    <textarea id="campoObjetivo" rows="3" maxlength="200" placeholder="Ex.: Quero criar um app que ajude a cuidar do meio ambiente"></textarea>
+                    <small id="contObjetivo" aria-live="polite"></small>
+                </div>
+            </section>
+
+            <section class="secao card" aria-labelledby="tDados">
+                <h2 id="tDados" style="margin-bottom:14px">Série e localização</h2>
+
+                <div class="campo">
+                    <label for="campoSerie">Série</label>
+                    <select id="campoSerie"><option value="">Prefiro não dizer</option></select>
+                </div>
+
+                <div class="campo" style="margin-bottom:0">
+                    <label for="campoLocal">Cidade/Estado</label>
+                    <input type="text" id="campoLocal" maxlength="120" placeholder="Ex.: Recife, PE" autocomplete="address-level2">
+                </div>
+            </section>
+
+            <p class="perfil-grupo">Preferências</p>
+
+            <section class="secao" aria-labelledby="tAcess">
+                <h2 id="tAcess" style="margin-bottom:12px">Acessibilidade rápida</h2>
+                <div class="acess-grade" style="grid-template-columns:repeat(2,1fr)">
+                    <button type="button" class="acess-op" id="qFonte" aria-pressed="false"><i class="fa-solid fa-font" aria-hidden="true"></i>Tamanho da letra<small id="qFonteVal"></small></button>
+                    <button type="button" class="acess-op" id="qAudio" aria-pressed="false"><i class="fa-solid fa-volume-high" aria-hidden="true"></i>Áudio<small>Ouvir a tela</small></button>
+                    <button type="button" class="acess-op" id="qLibras" aria-pressed="false"><i class="fa-solid fa-hands" aria-hidden="true"></i>Libras<small>Tradutor VLibras</small></button>
+                    <button type="button" class="acess-op" id="qContraste" aria-pressed="false"><i class="fa-solid fa-circle-half-stroke" aria-hidden="true"></i>Alto contraste<small>Cores mais fortes</small></button>
+                </div>
+                <p style="margin-top:10px"><a href="acessibilidade.html" style="font-weight:700">Ver todos os ajustes de acessibilidade →</a></p>
+            </section>
+
+            <p class="perfil-grupo">Atalhos e avisos</p>
+
+            <section class="secao" aria-labelledby="tAtal">
+                <h2 id="tAtal" style="margin-bottom:12px">Atalhos</h2>
+                <div class="atalhos-lista">
+                    <a class="atalho-linha" href="matilda.html"><i class="fa-solid fa-book-open" aria-hidden="true"></i>Falar com a Matilda<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                    <a class="atalho-linha" href="projetos.html"><i class="fa-solid fa-lightbulb" aria-hidden="true"></i>Meus projetos<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                    <a class="atalho-linha" href="oportunidades.html"><i class="fa-solid fa-trophy" aria-hidden="true"></i>Oportunidades<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                    <a class="atalho-linha" href="mulheres.html"><i class="fa-solid fa-venus" aria-hidden="true"></i>Mulheres na Ciência<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                    <a class="atalho-linha" href="passaporte.html"><i class="fa-solid fa-passport" aria-hidden="true"></i>Meu passaporte<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                    <a class="atalho-linha" href="acessibilidade.html"><i class="fa-solid fa-universal-access" aria-hidden="true"></i>Acessibilidade<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                    <a class="atalho-linha" href="termos.html"><i class="fa-solid fa-file-shield" aria-hidden="true"></i>Termos e privacidade<i class="fa-solid fa-chevron-right" aria-hidden="true"></i></a>
+                </div>
+            </section>
+
+            <section class="secao" aria-labelledby="tNotif">
+                <h2 id="tNotif" style="margin-bottom:12px">Notificações</h2>
+                <div id="listaNotif" class="grade" aria-live="polite"><div class="esqueleto" style="min-height:60px" aria-hidden="true"></div></div>
+            </section>
+
+            <p class="perfil-grupo">Conta</p>
+
+            <section class="secao card zona-perigo" aria-labelledby="tPriv">
+                <h2 id="tPriv" style="margin-bottom:8px">Sua conta</h2>
+                <p class="subtitulo" style="margin-bottom:12px">Guardamos seu nome, e-mail, preferências e o que você registra no app só para ele funcionar. Nada disso aparece para outras pessoas. <a href="termos.html">Ler os Termos e a Política de Privacidade</a>.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:10px">
+                    <button type="button" class="btn btn--contorno" id="btnSair"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i> Sair da conta</button>
+                    <button type="button" class="btn btn--perigo" id="btnExcluir"><i class="fa-solid fa-trash" aria-hidden="true"></i> Excluir minha conta</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/formas.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sessao.js"></script>
+    <script src="js/notificacao.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/perfil.js"></script>
+</body>
+
+</html>

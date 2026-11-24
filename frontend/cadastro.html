@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#c9a8f7">
+    <title>Criar conta — Efect Matilda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/matilda.css">
+    <link rel="stylesheet" href="css/formas.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="stylesheet" href="css/auth-pagina.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="js/acess.js"></script>
+</head>
+
+<body class="auth-page">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="ap">
+        <aside class="ap-lado">
+            <a class="ap-logo" href="index.html" aria-label="Matilda, voltar para o início">
+                <img src="img/logo-bonequinho.png" alt="Efect Matilda">
+            </a>
+
+            <div class="ap-lado__texto">
+                <h2>Sua jornada científica começa aqui.</h2>
+                <p>Crie sua conta em um minuto. Depois é só escolher o primeiro desafio e descobrir o que te move.</p>
+            </div>
+            <div class="ap-arte" aria-hidden="true"></div>
+        </aside>
+
+        <main class="ap-form" id="conteudo">
+            <p class="ap-form__topo">Já tem conta? <a href="login.html">Entrar</a></p>
+            <div class="ap-form__centro">
+            <div class="auth__miolo">
+                <h1>Criar conta</h1>
+                <p class="subtitulo" id="cadSubtitulo">Leva menos de um minuto.</p>
+
+                <div id="avisoCadastro" class="cu-notificacao-area"></div>
+
+                <form id="formCadastro" novalidate>
+                    <div class="cad-passos">
+                        <p class="cad-passos__texto" id="cadPassoTexto">Passo 1 de 2</p>
+                        <div class="cad-passos__barra" aria-hidden="true"><span id="cadBarra"></span></div>
+                    </div>
+
+                    <div class="cad-passo" id="cadPasso1">
+                        <div class="cad-grade">
+                    <div class="campo">
+                        <label for="nome">Como podemos te chamar?</label>
+                        <div class="entrada"><i class="entrada__icone fa-solid fa-user" aria-hidden="true"></i><input type="text" id="nome" name="nome" autocomplete="given-name" maxlength="80" placeholder="Seu nome" required></div>
+                        <p class="campo__erro" id="nome-erro" role="alert"></p>
+                    </div>
+                    <div class="campo">
+                        <label for="email">E-mail</label>
+                        <div class="entrada"><i class="entrada__icone fa-solid fa-envelope" aria-hidden="true"></i><input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="nome@exemplo.com" required></div>
+                        <p class="campo__erro" id="email-erro" role="alert"></p>
+                    </div>
+                    <div class="campo">
+                        <label for="senha">Senha</label>
+                        <div class="senha-wrap">
+                            <i class="entrada__icone fa-solid fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="senha" name="senha" autocomplete="new-password" placeholder="Mín. 6 caracteres" required>
+                            <button type="button" aria-label="Mostrar senha" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                        </div>
+                        <p class="campo__erro" id="senha-erro" role="alert"></p>
+                    </div>
+                    <div class="campo">
+                        <label for="senha2">Confirme a senha</label>
+                        <div class="senha-wrap">
+                            <i class="entrada__icone fa-solid fa-lock" aria-hidden="true"></i>
+                            <input type="password" id="senha2" name="senha2" autocomplete="new-password" placeholder="Repita a senha" required>
+                            <button type="button" aria-label="Mostrar senha" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+                        </div>
+                        <p class="campo__erro" id="senha2-erro" role="alert"></p>
+                    </div>
+                        </div>
+                        <button class="btn btn--primario btn--bloco" type="button" id="btnContinuar">Continuar <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                    </div>
+
+                    <div class="cad-passo" id="cadPasso2" hidden>
+                        <div class="cad-grade">
+                    <div class="campo">
+                        <label for="pergunta">Pergunta de segurança</label>
+                        <div class="entrada"><i class="entrada__icone fa-solid fa-circle-question" aria-hidden="true"></i><select id="pergunta" name="pergunta">
+                            <option>Qual o nome do seu primeiro animal de estimação?</option>
+                            <option>Qual a cidade onde você nasceu?</option>
+                            <option>Qual o nome da sua escola?</option>
+                            <option>Qual o seu livro ou filme de ciência favorito?</option>
+                        </select></div>
+                        <span class="dica">Ela serve para recuperar sua senha se você esquecer.</span>
+                    </div>
+                    <div class="campo">
+                        <label for="resposta">Resposta da pergunta</label>
+                        <div class="entrada"><i class="entrada__icone fa-solid fa-key" aria-hidden="true"></i><input type="text" id="resposta" name="resposta" autocomplete="off" maxlength="80" required></div>
+                        <p class="campo__erro" id="resposta-erro" role="alert"></p>
+                    </div>
+                        </div>
+                    <div class="campo">
+                        <label class="check" for="termos">
+                            <input type="checkbox" id="termos" name="termos" required>
+                            <span>Li e aceito os <a href="termos.html" target="_blank" rel="noopener">Termos de Uso e a Política de Privacidade</a>.</span>
+                        </label>
+                        <p class="campo__erro" id="termos-erro" role="alert"></p>
+                    </div>
+                        <p class="auth__nota"><i class="fa-solid fa-circle-info" aria-hidden="true"></i> Menos de 18 anos? Peça a um responsável para acompanhar.</p>
+                        <div class="cad-botoes">
+                            <button class="btn btn--contorno" type="button" id="btnVoltar"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Voltar</button>
+                            <button class="btn btn--primario" type="submit" id="btnCriar">Criar conta <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="cadGoogle">
+                    <div class="divisor">ou</div>
+
+                    <button class="btn btn--google btn--bloco" type="button" id="btnGoogle">
+                        <i class="fa-brands fa-google" aria-hidden="true"></i> Continuar com Google
+                    </button>
+                </div>
+
+                <p class="auth__rodape">Já tem conta? <a href="login.html">Entrar</a></p>
+            </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/formas.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sessao.js"></script>
+    <script src="js/notificacao.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/cadastro.js"></script>
+</body>
+
+</html>

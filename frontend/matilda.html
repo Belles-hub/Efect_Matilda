@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#3f1363">
+    <title>Matilda — Efect Matilda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/matilda.css">
+    <link rel="stylesheet" href="css/formas.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="js/acess.js"></script>
+</head>
+
+<body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <div class="app">
+        <nav id="nav"></nav>
+
+        <main id="conteudo" class="pagina">
+            <div class="chat-tela" id="chatTela">
+
+                <header class="chat-topo">
+                    <div class="chat-topo__linha">
+                        <span class="icone-circulo icone-circulo--matilda icone-circulo--topo"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                        <div class="chat-topo__txt">
+                            <h1>Matilda</h1>
+                            <p>Sua mentora científica</p>
+                        </div>
+                        <button type="button" class="btn btn--contorno-claro" id="btnNovaConversa" aria-label="Começar uma nova conversa">
+                            <i class="fa-solid fa-rotate-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                    <p class="chat-topo__aviso">Matilda está ajudando você a pensar — não pensando no seu lugar.</p>
+                </header>
+
+                <div class="modos" id="modos" role="group" aria-label="Modo de conversa">
+                    <button type="button" class="chip" data-modo="conversar" aria-pressed="true">
+                        <i class="fa-solid fa-comments" aria-hidden="true"></i> Conversar
+                    </button>
+                    <button type="button" class="chip" data-modo="projeto" aria-pressed="false">
+                        <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> Meu projeto
+                    </button>
+                </div>
+                <p class="modo-desc" id="modoDesc"></p>
+
+                <div class="mensagens" id="mensagens" role="log" aria-live="polite" aria-label="Conversa com a Matilda"></div>
+
+                <div class="chat-rodape">
+                    <div class="sugestoes" id="sugestoes"></div>
+
+                    <div class="material" id="material"></div>
+
+                    <button type="button" class="btn btn--contorno btn--estudo" id="btnEstudo">
+                        <i class="fa-solid fa-book-open-reader" aria-hidden="true"></i> Material de estudo
+                    </button>
+
+                    <div class="chat-area" id="areaWrap">
+                        <label for="selectArea">Área</label>
+                        <select id="selectArea"></select>
+                    </div>
+
+                    <form class="chat-form" id="formChat" autocomplete="off">
+                        <button type="button" class="btn btn--icone btn--anexo" id="btnAnexo" aria-haspopup="menu" aria-expanded="false" aria-label="Anexar foto ou arquivo">
+                            <i class="fa-solid fa-paperclip" aria-hidden="true"></i>
+                        </button>
+
+                        <div class="anexo-menu" id="anexoMenu" role="menu" hidden>
+                            <button type="button" class="anexo-menu__item" id="itemCamera" role="menuitem" hidden>
+                                <span class="anexo-menu__icone"><i class="fa-solid fa-camera" aria-hidden="true"></i></span>
+                                Câmera
+                            </button>
+                            <button type="button" class="anexo-menu__item" id="itemFotos" role="menuitem">
+                                <span class="anexo-menu__icone"><i class="fa-solid fa-image" aria-hidden="true"></i></span>
+                                Fotos
+                            </button>
+                            <button type="button" class="anexo-menu__item" id="itemArquivos" role="menuitem">
+                                <span class="anexo-menu__icone"><i class="fa-solid fa-file-lines" aria-hidden="true"></i></span>
+                                Arquivos
+                            </button>
+                            <p class="anexo-menu__nota">Fotos e arquivos são lidos na hora pela Matilda e não ficam guardados.</p>
+                        </div>
+
+                        <input type="file" id="inputFotos" accept="image/*" multiple hidden>
+                        <input type="file" id="inputArquivos" accept=".pdf,.docx,.txt,.md,.csv" multiple hidden>
+
+                        <label for="campoMensagem" class="sr-only">Escreva sua mensagem para a Matilda</label>
+                        <textarea id="campoMensagem" rows="1" maxlength="500" aria-describedby="contadorMsg" placeholder="Escreva sua mensagem para a Matilda..."></textarea>
+
+                        <button type="submit" class="btn btn--icone" id="btnEnviar" aria-label="Enviar mensagem">
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                    </form>
+
+                    <p class="contador" id="contadorMsg">500 caracteres restantes</p>
+                    <p class="aviso-ia">A Matilda pode cometer erros. Converse, mas confira o que for importante.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <dialog class="dlg-camera" id="dlgCamera" aria-labelledby="tituloCamera">
+        <h2 id="tituloCamera">Tirar foto</h2>
+        <p class="subtitulo">Aponte a câmera para o que você quer mostrar à Matilda.</p>
+        <video id="videoCamera" autoplay playsinline muted></video>
+        <div class="dlg-camera__botoes">
+            <button type="button" class="btn btn--contorno" id="btnCancelarCamera">Cancelar</button>
+            <button type="button" class="btn btn--primario" id="btnCapturar"><i class="fa-solid fa-camera" aria-hidden="true"></i> Capturar</button>
+        </div>
+    </dialog>
+
+    <dialog class="dlg-estudo" id="dlgEstudo" aria-labelledby="tituloEstudo">
+        <p class="estudo-msg" id="estudoMsg" role="alert" hidden></p>
+        <div id="estudoForm">
+            <h2 id="tituloEstudo">Material de estudo</h2>
+            <p class="subtitulo">Escolha o que quer e a Matilda monta pra você. Depois é só baixar em PDF.</p>
+
+            <form id="formEstudo">
+                <div class="estudo-tipos" id="estudoTipos" role="group" aria-label="Tipo de material">
+                    <button type="button" class="chip" data-tipo="plano" aria-pressed="true"><i class="fa-solid fa-calendar-check" aria-hidden="true"></i> Plano de estudos</button>
+                    <button type="button" class="chip" data-tipo="atividades" aria-pressed="false"><i class="fa-solid fa-pencil" aria-hidden="true"></i> Atividades</button>
+                    <button type="button" class="chip" data-tipo="mapa" aria-pressed="false"><i class="fa-solid fa-diagram-project" aria-hidden="true"></i> Mapa mental</button>
+                    <button type="button" class="chip" data-tipo="resumo" aria-pressed="false"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Resumo</button>
+                </div>
+
+                <label for="estudoTema">O que você quer estudar?</label>
+                <input type="text" id="estudoTema" maxlength="200" required placeholder="Ex.: frações, fotossíntese, Revolução Francesa">
+
+                <div id="estudoDiasWrap">
+                    <label for="estudoDias">Em quantos dias?</label>
+                    <input type="number" id="estudoDias" min="1" max="30" value="7">
+                </div>
+
+                <p class="estudo-nota" id="estudoNota" hidden></p>
+
+                <div class="dlg-camera__botoes">
+                    <button type="button" class="btn btn--contorno" id="btnFecharEstudo">Cancelar</button>
+                    <button type="submit" class="btn btn--primario" id="btnGerarEstudo">Gerar</button>
+                </div>
+            </form>
+        </div>
+
+        <div id="estudoResultado" hidden>
+            <div id="estudoConteudo"></div>
+            <div class="dlg-camera__botoes">
+                <button type="button" class="btn btn--contorno" id="btnOutroEstudo">Fazer outro</button>
+                <button type="button" class="btn btn--contorno" id="btnFecharResultado">Fechar</button>
+                <button type="button" class="btn btn--primario" id="btnBaixarPdf"><i class="fa-solid fa-file-pdf" aria-hidden="true"></i> Baixar PDF</button>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="js/formas.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sessao.js"></script>
+    <script src="js/notificacao.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/anexos.js"></script>
+    <script src="js/vendor/jspdf.umd.min.js"></script>
+    <script src="js/pdf-estudo.js"></script>
+    <script src="js/estudo.js"></script>
+    <script src="js/matilda.js"></script>
+</body>
+
+</html>

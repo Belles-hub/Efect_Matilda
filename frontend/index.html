@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Efect Matilda — plataforma que leva meninas do ensino básico à participação científica, com desafios práticos, uma mentora de IA socrática e referências reais de mulheres na ciência.">
+    <meta name="theme-color" content="#c9a8f7">
+    <title>Efect Matilda — Da curiosidade à participação científica</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Sora:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="css/matilda.css">
+    <link rel="stylesheet" href="css/formas.css">
+    <link rel="stylesheet" href="css/landing.css">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <script src="js/acess.js"></script>
+</head>
+
+<body class="landing">
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+    <main id="conteudo">
+        <section class="lp-hero" aria-labelledby="titulo-hero">
+            <div class="lp-hero__miolo">
+                <header class="lp-topo">
+                    <a class="lp-logo" href="index.html" aria-label="Matilda, página inicial">
+                        <img class="lp-logo__clara" src="img/logo-efect-matilda.png" alt="Efect Matilda"><img class="lp-logo__escura" src="img/logo-efect-matilda-ameixa.png" alt="" aria-hidden="true">
+                    </a>
+                    <a class="lp-topo__entrar" href="login.html">Entrar</a>
+                </header>
+
+                <div class="lp-hero__grade">
+                    <div class="lp-texto">
+                        <p class="lp-etiqueta">Da curiosidade à participação científica</p>
+                        <h1 id="titulo-hero">O que você gostaria de descobrir hoje?</h1>
+                        <p class="lp-lead">Não é curso, chatbot ou rede social. É onde meninas do ensino básico experimentam ciência e tecnologia na prática, com uma mentora de IA que pergunta antes de responder.</p>
+
+                        <div class="lp-botoes">
+                            <a class="lp-btn lp-btn--principal" href="cadastro.html">Começar agora <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                            <a class="lp-btn lp-btn--contorno" href="login.html">Já tenho uma conta</a>
+                        </div>
+                    </div>
+
+                    <div class="lp-mascote">
+                        <div class="lp-livro" role="img" aria-label="Livro mágico pop-up que se abre e faz surgir um cenário de papel com planeta, átomo, notebook com código, frasco de experimento e uma plantinha, enquanto símbolos como pi sobem em brilho"><svg class="livro-svg" viewBox="0 0 400 520" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <!-- brilho de fundo -->
+  <circle class="v-halo" cx="190" cy="215" r="170" fill="#ffffff" opacity=".35"/>
+
+  <!-- pontinhos -->
+  <g class="v-pontos" fill="#3f1363" opacity=".35">
+    <circle cx="60" cy="90" r="6"/><circle cx="330" cy="70" r="5"/><circle cx="360" cy="260" r="6"/><circle cx="48" cy="330" r="5"/><circle cx="300" cy="420" r="6"/>
+  </g>
+
+  <!-- sombra no chão -->
+  <ellipse class="v-sombra" cx="200" cy="492" rx="120" ry="12" fill="#2a0b45" opacity=".25"/>
+
+  <!-- livro mágico (flutua) -->
+  <g class="v-livro" style="transform-origin: 200px 400px;">
+    <!-- capa -->
+    <path d="M44 384 Q122 350 200 388 Q278 350 356 384 L356 452 Q278 420 200 458 Q122 420 44 452 Z" fill="#2d0b42"/>
+    <path d="M44 452 Q122 420 200 458 Q278 420 356 452 L356 462 Q278 432 200 468 Q122 432 44 462 Z" fill="#1e0a30"/>
+    <!-- páginas (abrem a partir da lombada) -->
+    <g class="v-pagina v-pagina--e" style="transform-origin: 200px 410px;">
+      <path d="M58 374 Q128 342 196 378 L196 446 Q128 412 58 440 Z" fill="#fffaf0"/>
+      <g fill="none" stroke="#d9c9f2" stroke-width="5" stroke-linecap="round">
+        <path d="M78 388 Q120 370 170 394"/><path d="M78 406 Q120 388 170 412"/><path d="M78 424 Q120 406 170 430"/>
+      </g>
+    </g>
+    <g class="v-pagina v-pagina--d" style="transform-origin: 200px 410px;">
+      <path d="M342 374 Q272 342 204 378 L204 446 Q272 412 342 440 Z" fill="#fffaf0"/>
+      <g fill="none" stroke="#d9c9f2" stroke-width="5" stroke-linecap="round">
+        <path d="M322 388 Q280 370 230 394"/><path d="M322 406 Q280 388 230 412"/><path d="M322 424 Q280 406 230 430"/>
+      </g>
+    </g>
+    <path d="M196 378 L196 446 L204 446 L204 378 Z" fill="#d9c9f2"/>
+    <!-- luz saindo do livro -->
+    <ellipse class="v-halo" cx="200" cy="372" rx="92" ry="16" fill="#FFCD00" opacity=".35"/>
+
+    <!-- cenário pop-up: camadas de papel que se erguem das páginas -->
+    <g class="v-popup">
+      <!-- lua (fundo) -->
+      <g class="v-pop p0"><path d="M70 104 A29 29 0 1 0 92 152 A23 23 0 1 1 70 104 Z" fill="#FFCD00"/></g>
+
+      <!-- planeta com anel (fundo, esquerda) -->
+      <g class="v-pop p1">
+        <rect x="117" y="290" width="6" height="104" fill="#b9a0dd"/>
+        <circle cx="120" cy="250" r="40" fill="#a35cd6"/>
+        <circle cx="106" cy="238" r="8" fill="#c28be8"/><circle cx="134" cy="262" r="6" fill="#c28be8"/>
+        <ellipse cx="120" cy="250" rx="64" ry="14" fill="none" stroke="#FFCD00" stroke-width="7" transform="rotate(-20 120 250)"/>
+      </g>
+
+      <!-- átomo (fundo, direita) -->
+      <g class="v-pop p2">
+        <rect x="287" y="276" width="6" height="118" fill="#b9a0dd"/>
+        <g fill="none" stroke="#FFCD00" stroke-width="6">
+          <ellipse cx="290" cy="228" rx="52" ry="18"/>
+          <ellipse cx="290" cy="228" rx="52" ry="18" transform="rotate(60 290 228)"/>
+          <ellipse cx="290" cy="228" rx="52" ry="18" transform="rotate(120 290 228)"/>
+        </g>
+        <circle cx="290" cy="228" r="10" fill="#ffffff"/>
+      </g>
+
+      <!-- notebook com código (centro) -->
+      <g class="v-pop p3">
+        <rect x="144" y="288" width="112" height="76" rx="8" fill="#2d0b42" stroke="#fffaf0" stroke-width="6"/>
+        <text x="200" y="338" font-family="'Sora', sans-serif" font-weight="800" font-size="30" fill="#FFCD00" text-anchor="middle">&lt;/&gt;</text>
+        <path d="M124 372 L276 372 L264 385 L136 385 Z" fill="#fffaf0"/>
+      </g>
+
+      <!-- frasco de experimento (frente, esquerda) -->
+      <g class="v-pop p4">
+        <path d="M98 322 L112 322 L112 346 L134 392 L76 392 L98 346 Z" fill="#fffaf0"/>
+        <path d="M86 372 L124 372 L134 392 L76 392 Z" fill="#7ee0c3"/>
+        <circle cx="100" cy="362" r="4" fill="#ffffff"/><circle cx="110" cy="352" r="3" fill="#ffffff"/>
+      </g>
+
+      <!-- plantinha (frente, direita) -->
+      <g class="v-pop p5">
+        <path d="M300 380 Q300 358 300 336" fill="none" stroke="#3a9d5d" stroke-width="6" stroke-linecap="round"/>
+        <path d="M300 352 Q330 332 342 347 Q320 364 300 352 Z" fill="#5fcf80"/>
+        <path d="M300 367 Q272 347 260 362 Q282 378 300 367 Z" fill="#5fcf80"/>
+        <path d="M284 380 L316 380 L311 396 L289 396 Z" fill="#F59E0B"/>
+      </g>
+    </g>
+
+    <!-- símbolos que sobem do livro e se desfazem em brilho -->
+    <g class="v-simbolos" font-family="'Sora', 'DM Sans', sans-serif" font-weight="800" text-anchor="middle">
+      <text class="v-simbolo s1" x="200" y="380" font-size="44" fill="#ffffff" style="--dx:150px;--dy:-300px">π</text>
+      <text class="v-simbolo s2" x="200" y="380" font-size="44" fill="#FFCD00" style="--dx:0px;--dy:-335px">∑</text>
+      <text class="v-simbolo s3" x="200" y="380" font-size="32" fill="#d9c9f2" style="--dx:-60px;--dy:-270px">01</text>
+      <text class="v-simbolo s4" x="200" y="380" font-size="42" fill="#ffffff" style="--dx:90px;--dy:-255px">√</text>
+    </g>
+  </g>
+
+  <!-- brilhos -->
+  <path class="v-brilho b1" d="M70 114 L77 132 L96 140 L77 147 L70 166 L62 147 L44 140 L62 132 Z" fill="#ffffff"/>
+  <path class="v-brilho b2" d="M335 116 L344 140 L369 150 L344 159 L335 184 L325 159 L301 150 L325 140 Z" fill="#ffffff"/>
+  <path class="v-brilho b3" d="M30 320 L38 341 L60 350 L38 358 L30 380 L21 358 L0 350 L21 341 Z" fill="#F59E0B"/>
+  <path class="v-brilho b4" d="M352 308 L358 323 L374 330 L358 336 L352 352 L345 336 L330 330 L345 323 Z" fill="#F59E0B"/>
+  <path class="v-brilho b5" d="M360 200 L367 220 L388 228 L367 235 L360 256 L352 235 L332 228 L352 220 Z" fill="#ffffff"/>
+  <path class="v-brilho b6" d="M215 20 L220 34 L235 40 L220 45 L215 60 L209 45 L195 40 L209 34 Z" fill="#a35cd6"/>
+</svg></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="lp-secao" aria-labelledby="titulo-destaques">
+            <h2 id="titulo-destaques">Não é curso. Não é chatbot. É um caminho.</h2>
+
+            <div class="lp-cards">
+                <article class="lp-card">
+                    <span class="lp-card__icone"><i class="fa-solid fa-flask" aria-hidden="true"></i></span>
+                    <h3>Desafios práticos primeiro</h3>
+                    <p>Antes de escolher uma área, você experimenta: desafios de mão na massa, na prática.</p>
+                </article>
+
+                <article class="lp-card">
+                    <span class="lp-card__icone"><i class="fa-solid fa-book-open" aria-hidden="true"></i></span>
+                    <h3>Matilda, sua mentora</h3>
+                    <p>Ela pergunta, não entrega resposta pronta. Te ajuda a pensar, não pensa por você.</p>
+                </article>
+
+                <article class="lp-card">
+                    <span class="lp-card__icone"><i class="fa-solid fa-venus" aria-hidden="true"></i></span>
+                    <h3>Mulheres na ciência, de verdade</h3>
+                    <p>Referências reais de cientistas, engenheiras e programadoras, para você descobrir quem já abriu esse caminho.</p>
+                </article>
+
+                <article class="lp-card">
+                    <span class="lp-card__icone"><i class="fa-solid fa-trophy" aria-hidden="true"></i></span>
+                    <h3>Oportunidades reais</h3>
+                    <p>Olimpíadas, feiras de ciência e hackathons abertos para a sua idade. Participe de verdade, não só leia sobre eles.</p>
+                </article>
+            </div>
+
+            <p class="lp-fecho">Não queremos apenas mostrar às meninas que a ciência existe. Queremos criar caminhos para que elas entrem nela.</p>
+        </section>
+    </main>
+
+    <footer class="rodape lp-rodape">
+        <a href="termos.html">Termos de uso e privacidade</a> ·
+        <a href="acessibilidade.html">Acessibilidade</a>
+    </footer>
+
+    <script src="js/formas.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/sessao.js"></script>
+    <script>
+        // Quem já está logada vai direto pro app.
+        if (localStorage.getItem(SESSAO_TOKEN_KEY) || localStorage.getItem(SESSAO_GOOGLE_KEY)) {
+            window.location.replace('inicio.html');
+        }
+    </script>
+</body>
+
+</html>
