@@ -328,6 +328,14 @@ Acess.prepararBotaoOuvir = function () {
 Acess.carregar();
 Acess.aplicar();
 
+// Quem segue o sistema vê a troca claro/escuro (ou de contraste) na hora.
+if (window.matchMedia) {
+    ['(prefers-color-scheme: dark)', '(prefers-contrast: more)'].forEach(function (consulta) {
+        const midia = matchMedia(consulta);
+        if (midia.addEventListener) midia.addEventListener('change', Acess.aplicar);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     Acess.prepararGuia();
     Acess.prepararBotaoOuvir();

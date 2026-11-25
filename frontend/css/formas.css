@@ -225,7 +225,7 @@ html[data-contraste="alto"] .palco h2, html[data-contraste="alto"] .palco .rotul
 html[data-contraste="alto"] .hero, html[data-contraste="alto"] .auth, html[data-contraste="alto"] .saudacao { background: var(--roxo); }
 
 /* No escuro, círculos de ícone com fundo pastel precisam de ícone escuro (senão somem). */
-html[data-tema="escuro"] .icone-circulo[class*="icone-circulo--"]:not(.icone-circulo--roxo) { color: #1e0a30; }
+html[data-tema="escuro"] .icone-circulo[class*="icone-circulo--"]:not(.icone-circulo--roxo):not(.icone-circulo--grande) { color: #1e0a30; }
 
 /* =========================================================
    HOME ORGANIZADA — pouca coisa por vez, nada competindo

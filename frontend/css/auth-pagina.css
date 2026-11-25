@@ -409,12 +409,6 @@ html[data-tema="escuro"] .ap-form .btn--contorno:hover { border-color: var(--ros
 .ap-lado__texto p { color: #fff; }
 .ap-logo img { filter: none; }
 
-/* celular: faixa baixa — mostra as duas bolhas com o rosto, de lado */
-@media (max-width: 899px) {
-  .ap-lado { min-height: 200px; }
-  .ap-arte { background-size: 190% auto; background-position: 72% 74%; }
-}
-
 /* desktop: título no topo e a arte ocupa o resto do painel */
 @media (min-width: 900px) {
   .ap-lado { align-content: start; }
@@ -424,24 +418,8 @@ html[data-tema="escuro"] .ap-form .btn--contorno:hover { border-color: var(--ros
 html[data-contraste="alto"] .ap-arte { opacity: 0.35; }
 html[data-contraste="alto"] .ap-lado { background: #000; }
 
-/* contraste: o título fica sempre sobre o laranja, nunca sobre as bolhas */
-@media (max-width: 899px) {
-  .ap-lado { min-height: 250px; padding-bottom: 36px; }
-  .ap-arte { top: 52%; background-size: cover; background-position: 62% 64%; }
-  .ap-lado__texto h2 { max-width: 14ch; }
-}
 @media (min-width: 900px) {
   .ap-lado__texto h2 { max-width: 9ch; }
-}
-
-@media (max-width: 899px) {
-  .ap-lado { min-height: 300px; }
-  .ap-arte { top: 58%; bottom: 20px; background-size: 150% auto; background-position: 66% 78%; }
-}
-
-@media (max-width: 899px) {
-  .ap-lado { min-height: 270px; align-content: start; row-gap: 16px; padding-bottom: 20px; }
-  .ap-arte { top: 62%; bottom: 0; background-size: 135% auto; background-position: 66% 80%; }
 }
 
 /* telas de entrada: bonequinho branco centralizado no topo do painel, nos dois modos */
@@ -474,10 +452,6 @@ html[data-contraste="alto"] .ap-lado { background: #000; }
   /* arte na altura toda do painel, colada embaixo; sobra laranja à esquerda (mesma cor do painel) */
   .ap-arte { top: 0; background-size: auto 100%; background-position: 100% 100%; }
 }
-@media (max-width: 899px) {
-  .ap-lado { padding-top: 28px; }
-}
-
 @media (min-width: 900px) {
   /* arte cobrindo o painel inteiro (sem emendas), deslocada pra baixo: o título fica no laranja */
   .ap-arte { top: 0; background-size: cover; background-position: 50% calc(100% + 200px); }
@@ -486,12 +460,6 @@ html[data-contraste="alto"] .ap-lado { background: #000; }
 /* painel roxo escuro com bolhas amarela e laranja (combina com a plataforma) */
 .ap-lado { background: #3f1363; }
 html[data-tema="escuro"] .ap-lado { background: #2d0b42; }
-
-/* celular: título de 3 linhas (cadastro) não encosta na arte */
-@media (max-width: 899px) {
-  .ap-lado { min-height: 300px; }
-  .ap-arte { top: 68%; }
-}
 
 /* painel rosa claro com bolhas amarela e roxa; texto e logo em roxo escuro */
 .ap-lado, html[data-tema="escuro"] .ap-lado { background: #F9C6E0; }
@@ -510,3 +478,27 @@ html[data-tema="escuro"] .ap-lado { background: #2d0b42; }
     radial-gradient(70% 55% at 100% 30%, rgba(123, 79, 196, 0.6) 0%, transparent 70%),
     radial-gradient(60% 45% at 30% 60%, rgba(255, 138, 61, 0.18) 0%, transparent 70%);
 }
+
+/* celular: a arte é uma faixa própria no rodapé do painel, abaixo do título.
+   A altura inclui os 24px que o formulário cobre. */
+@media (max-width: 899px) {
+  /* --faixa acompanha a altura da tela: celular baixo ganha mais formulário */
+  .ap-lado { --faixa: clamp(104px, 22vh, 150px); align-content: start; row-gap: 16px; padding-top: 28px; padding-bottom: var(--faixa); }
+  .ap-lado__texto h2 { max-width: 14ch; font-size: clamp(1.3rem, 6.4vw, 1.9rem); }
+  .ap-arte { top: auto; height: var(--faixa); background: url("../img/arte-entrada-faixa.svg") no-repeat center bottom / 100% 100%; }
+}
+
+/* celular deitado: faixa mínima, com a logo mais perto do topo */
+@media (max-width: 899px) and (max-height: 500px) {
+  .ap-lado { --faixa: 80px; min-height: 0; padding-top: 14px; row-gap: 8px; }
+}
+
+/* modo escuro: painel mais fundo e bolinhas menos ofuscantes */
+html[data-tema="escuro"] .ap-lado {
+  background-color: #240a38;
+  background-image:
+    radial-gradient(70% 55% at 0% 0%, rgba(185, 90, 170, 0.34) 0%, transparent 70%),
+    radial-gradient(70% 55% at 100% 30%, rgba(123, 79, 196, 0.38) 0%, transparent 70%);
+}
+html[data-tema="escuro"] .ap-arte { filter: brightness(0.86) saturate(0.92); }
+html[data-contraste="alto"] .ap-lado, html[data-contraste="alto"][data-tema="escuro"] .ap-lado { background: #000; }

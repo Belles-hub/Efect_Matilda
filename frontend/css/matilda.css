@@ -433,6 +433,17 @@ html[data-contraste="alto"] .nav__item[aria-current="page"] { outline: 3px solid
 /* Mobile: só os itens "principais" (as 5 telas do MVP) + o botão "Mais"
    ficam na barra inferior — o resto mora dentro do sheet do "Mais". */
 .nav__item--extra { display: none; }
+/* a logo é só do menu lateral; na barra de baixo ela empurrava o "Mais" pra fora */
+@media (max-width: 899px) {
+  .nav .nav__logo { display: none; }
+  .nav__item { min-width: 0; }
+}
+/* telas estreitas: só o item atual mostra o nome; nos outros fica o ícone
+   (o texto continua lá para o leitor de tela) */
+@media (max-width: 519px) {
+  .nav .nav__item:not([aria-current="page"]) span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .nav .nav__item[aria-current="page"] { flex: 0 0 auto; padding-inline: 14px; }
+}
 
 .pagina { width: 100%; max-width: 1080px; margin: 0 auto; padding: 20px var(--gutter) 0; }
 
