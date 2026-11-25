@@ -12,6 +12,9 @@
 ========================================================= */
 
 const ACESS_CHAVE = 'efectmatilda_acess';
+// Marca "mudei aqui e a conta ainda não recebeu": enquanto existir, o que
+// vale é o aparelho (senão a conta devolve o valor antigo por cima).
+const ACESS_PENDENTE = 'efectmatilda_acess_pendente';
 
 const ACESS_PADRAO = {
     fonte: 'media',          // 'pequena' | 'media' | 'grande'
@@ -98,6 +101,7 @@ Acess.definir = function (chave, valor) {
 
     Acess.estado = Acess.validar({ ...Acess.estado, [chave]: valor });
     Acess.salvarLocal();
+    Acess.marcarPendente();
     Acess.aplicar();
     Acess.agendarEnvio();
 };
@@ -106,11 +110,20 @@ Acess.redefinir = function () {
     // Volta ao padrão de fábrica (inclusive "seguir o sistema" no tema).
     Acess.estado = { ...ACESS_PADRAO };
     Acess.salvarLocal();
+    Acess.marcarPendente();
     Acess.aplicar();
     Acess.agendarEnvio();
 };
 
 /* ---------- conta (sincroniza entre aparelhos) ---------- */
+
+Acess.marcarPendente = function () {
+    try { localStorage.setItem(ACESS_PENDENTE, String(Date.now())); } catch (erro) { /* sem armazenamento */ }
+};
+
+Acess.pendente = function () {
+    try { return localStorage.getItem(ACESS_PENDENTE); } catch (erro) { return null; }
+};
 
 Acess.agendarEnvio = function () {
     if (typeof obterSessaoAtual !== 'function' || typeof API_BASE_URL === 'undefined') return;
@@ -122,12 +135,17 @@ Acess.agendarEnvio = function () {
     Acess._timerRemoto = setTimeout(async function () {
         try {
             const { token, uid } = await obterSessaoAtual();
+            const marca = Acess.pendente();
 
-            await fetch(`${API_BASE_URL}/perfil/${encodeURIComponent(uid)}/acessibilidade`, {
+            const resposta = await fetch(`${API_BASE_URL}/perfil/${encodeURIComponent(uid)}/acessibilidade`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
-                body: JSON.stringify({ efectmatilda: Acess.estado })
+                body: JSON.stringify({ efectmatilda: Acess.estado }),
+                keepalive: true
             });
+
+            // Só limpa se a conta recebeu e nada mudou enquanto enviava.
+            if (resposta.ok && Acess.pendente() === marca) localStorage.removeItem(ACESS_PENDENTE);
         } catch (erro) {
             // Sem sessão ou sem internet: já está salvo neste aparelho.
         }
@@ -135,6 +153,12 @@ Acess.agendarEnvio = function () {
 };
 
 Acess.sincronizarComConta = async function () {
+    // Ajuste feito aqui que ainda não chegou na conta: envia, não sobrescreve.
+    if (Acess.pendente()) {
+        Acess.agendarEnvio();
+        return;
+    }
+
     try {
         const { token, uid } = await obterSessaoAtual();
 
@@ -145,6 +169,9 @@ Acess.sincronizarComConta = async function () {
         if (!resposta.ok) return;
 
         const dados = await resposta.json();
+
+        // A pessoa mexeu enquanto a resposta vinha: a escolha dela vale.
+        if (Acess.pendente()) return;
 
         // Conta que nunca salvou nada: vale o que já está neste aparelho.
         if (!dados || !dados.efectmatilda) {

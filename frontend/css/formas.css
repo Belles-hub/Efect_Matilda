@@ -852,3 +852,28 @@ html[data-tema="escuro"] .logo-escura { display: none !important; }
   .nav__logo.marca { margin: 18px auto 28px; }
   .nav__logo img { width: auto; height: 104px; max-width: 100%; }
 }
+
+/* =========================================================
+   MODO ESCURO: contraste (aqui --roxo é quase preto e sumia no fundo)
+========================================================= */
+html[data-tema="escuro"] .jornada__passo:not(.feito):not(.atual) .jornada__bolha,
+html[data-tema="escuro"] .campo-metodo:not(.preenchido) .campo-metodo__rotulo .n,
+html[data-tema="escuro"] .avatar-op { color: #e6d8fa; }
+/* atalhos são cartões pastel nos dois temas: texto sempre escuro */
+html[data-tema="escuro"] .atalho, html[data-tema="escuro"] .atalho i { color: #1e0a30; }
+html[data-tema="escuro"] #notifBadge { color: #2a0710 !important; }
+
+/* jornada no celular: nome embaixo da bolinha, pra caber os quatro passos */
+@media (max-width: 519px) {
+  .jornada { align-items: flex-start; gap: 2px; }
+  .jornada__passo { flex: 0 0 auto; flex-direction: column; gap: 4px; }
+  .jornada__linha { margin-top: 16px; min-width: 6px; }
+  .jornada__rotulo { font-size: 0.66rem; }
+}
+
+/* áreas do início no celular: colunas iguais e ícone em cima, sem cortar nomes longos */
+@media (max-width: 519px) {
+  .categorias { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .categorias .categoria { min-width: 0; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .categorias .categoria > span:last-child { max-width: 100%; font-size: 0.9rem; overflow-wrap: anywhere; }
+}

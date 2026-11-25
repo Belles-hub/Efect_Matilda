@@ -374,3 +374,11 @@ html[data-tema="escuro"] body.landing .lp-hero {
   .v-simbolo { opacity: 1; transform: translate(var(--dx), var(--dy)); }
 }
 html[data-reduzir="1"] .v-simbolo { opacity: 1; transform: translate(var(--dx), var(--dy)); }
+
+/* logo da tela inicial igual à do app: sem pílula, ameixa no claro e creme no escuro */
+.lp-logo, html[data-tema="escuro"] .lp-logo { background: transparent; padding: 0; border-radius: 0; }
+.lp-logo__clara { display: none !important; }
+.lp-logo__escura { display: block !important; }
+html[data-tema="escuro"] .lp-logo__clara { display: block !important; }
+html[data-tema="escuro"] .lp-logo__escura { display: none !important; }
+.lp-logo img { height: clamp(48px, 12vw, 64px); width: auto; }
